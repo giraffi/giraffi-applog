@@ -28,6 +28,7 @@ end
 class Server < Sinatra::Base
   # Include Rack::FiberPool in the stack 
   # and set the number of fibers in the pool (Current default: 100)
+  use Rack::FiberPool, :size => 100
 
   set :root, File.dirname(__FILE__)
 
