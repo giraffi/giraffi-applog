@@ -6,11 +6,9 @@ require 'sinatra/base'
 require 'mongoid'
 require 'fiber'
 require 'rack/fiber_pool'
-require 'pp'
-#require 'giraffi_auth'
 
 Mongoid.configure do |config|
-  # Please change according to your environment
+  # Please change 3 params below according to your environment
   host = 'localhost'    
   port = 27017
   name = 'giraffi_applog_development'
@@ -30,16 +28,6 @@ end
 class Server < Sinatra::Base
   # Include Rack::FiberPool in the stack 
   # and set the number of fibers in the pool (Current default: 100)
-  use Rack::FiberPool, :size => 100
-
-  #use Rack::Cache do
-  #  set :verbose, true
-  #  set :metastore, 'heap:/'
-  #  set :entitystore, 'heap:/'
-  #end
-
-  # Include Applog as model
-  #use Server::Applog
 
   set :root, File.dirname(__FILE__)
 
@@ -59,7 +47,6 @@ class Server < Sinatra::Base
   end
 
   post '/applogs.json' do
-    
     data = JSON.parse request.body.read
     applog = Applog.new(data['applog'])
 
@@ -68,13 +55,10 @@ class Server < Sinatra::Base
       applog.to_json
     else
       json_status 400, applog.errors.to_hash
-      #json_status 400, applog.errors.to_json
     end
-
   end
 
   get '/applogs.json' do
-   
     data = JSON.parse request.body.read
     message = data['message']
     level = data['level']
@@ -94,7 +78,6 @@ class Server < Sinatra::Base
     else
       json_status 404, "Not found"
     end
-
   end
 
   # Handling error, not_found, etc. 
