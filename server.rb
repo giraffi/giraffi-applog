@@ -60,18 +60,29 @@ class Server < Sinatra::Base
   end
 
   get '/applogs.json' do
-    data = JSON.parse request.body.read
-    message = data['message']
-    level = data['level']
+    params.delete_if { |k, v| v.empty? }
+
+    message = params['message'] || nil
+    level = params['level'] || nil
+    limit = params['limit'] || 0
+    applog = nil
+
+    if limit.to_i <= 0
+      # Initialize with default limit: 10
+      limit = 10
+    elsif limit.to_i > 100
+      # Initialize with max limit: 100
+      limit = 100
+    end
     
     if message && level
-      applog = Applog.all(conditions: {message: /"#{message}"/, level: level})
+      applog = Applog.all(conditions: {message: /"#{message}"/, level: level}, sort:[["$natural", -1]], limit: limit.to_i)
     elsif message
-      applog = Applog.all(conditions: {message: /"#{message}"/})
+      applog = Applog.all(conditions: {message: /"#{message}"/}, sort: [["$natural", -1]], limit: limit.to_i)
     elsif level
-      applog = Applog.all(conditions: {level: level})
+      applog = Applog.all(conditions: {level: level}, sort: [["$natural", -1]], limit: limit.to_i)
     else
-      applog = nil
+      applog = Applog.all(sort: [["$natural", -1]], limit: limit.to_i)
     end
 
     if applog 
