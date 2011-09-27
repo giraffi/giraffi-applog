@@ -1,7 +1,26 @@
-watch('test/test_.*\.rb') do |m| 
-  system("ruby #{m[0]}")
+def run_spec(file)
+  unless File.exist?(file)
+    puts "#{file} does not exist"
+    return
+  end
+
+  puts "Running #{file}"
+  system "bundle exec rspec #{file}"
+  puts
 end
 
-watch('lib/(.*)\.rb') do |m|
-  system("ruby test/test_#{m[1]}.rb")
+watch("spec/.*/*_spec.rb") do |match|
+  run_spec match[0]
+end
+
+watch("app/(.*/.*).rb") do |match|
+  run_spec %{spec/#{match[1]}_spec.rb}
+end
+
+watch("server.rb") do |match|
+  run_spec %{spec/server_spec.rb}
+end
+
+watch("spec/spec_helper.rb") do |match|
+  run_spec %{spec/server_spec.rb}
 end

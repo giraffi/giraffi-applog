@@ -1,7 +1,6 @@
 raise LoadError, "Ruby 1.9.1 or higher" if RUBY_VERSION < '1.9.1'
 
 require 'rubygems'
-require 'rack/cache'
 require 'sinatra/base'
 require 'mongoid'
 require 'fiber'
@@ -23,12 +22,15 @@ class Applog
   field :message 
   field :type 
   field :level 
+
+  validates_presence_of :time, :message, :type, :level
+  validates_numericality_of :time
 end
 
 class Server < Sinatra::Base
   # Include Rack::FiberPool in the stack 
   # and set the number of fibers in the pool (Current default: 100)
-  use Rack::FiberPool, :size => 100
+  use Rack::FiberPool, :size => 100 unless test?
 
   set :root, File.dirname(__FILE__)
 
@@ -51,21 +53,21 @@ class Server < Sinatra::Base
     data = JSON.parse request.body.read
     applog = Applog.new(data['applog'])
 
-    if applog.save!
+    if applog.save
       status 201 # Created
       applog.to_json
     else
-      json_status 400, applog.errors.to_hash
+      json_status 400, applog.errors.to_json
     end
   end
 
   get '/applogs.json' do
     params.delete_if { |k, v| v.empty? }
 
+    applog = nil
     message = params['message'] || nil
     level = params['level'] || nil
     limit = params['limit'] || 0
-    applog = nil
 
     if limit.to_i <= 0
       # Initialize with default limit: 10
