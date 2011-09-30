@@ -4,14 +4,16 @@ require 'rubygems'
 require 'sinatra/base'
 require 'mongoid'
 require 'fiber'
-require 'rack/fiber_pool'
 
 Mongoid.configure do |config|
-  # Please change params below according to your environment.
+  ## Please change params below according to your environment.
+
+  ## localhost
   #host = 'localhost'    
   #port = 27017
   #db_name = 'giraffi_applog_development'
 
+  ## mongoHQ
   host = 'staff.mongohq.com'    
   port = 10090
   db_name   = 'azukiarai01'
@@ -36,11 +38,6 @@ class Applog
 end
 
 class Server < Sinatra::Base
-  # Include Rack::FiberPool in the stack 
-  # and set the number of fibers in the pool (Current default: 100)
-  use Rack::FiberPool, :size => 100 unless test?
-
-  set :root, File.dirname(__FILE__)
 
   def self.put_or_post(*a, &b)
     put *a, &b
