@@ -7,12 +7,20 @@ require 'fiber'
 require 'rack/fiber_pool'
 
 Mongoid.configure do |config|
-  # Please change 3 params below according to your environment
-  host = 'localhost'    
-  port = 27017
-  name = 'giraffi_applog_development'
+  # Please change params below according to your environment.
+  #host = 'localhost'    
+  #port = 27017
+  #db_name = 'giraffi_applog_development'
+
+  host = 'staff.mongohq.com'    
+  port = 10090
+  db_name   = 'azukiarai01'
+  username  = 'azukiarai'
+  password  = 'password'
   
-  config.master = Mongo::Connection.new(host, port).db(name)
+  config.master = Mongo::Connection.new(host, port).db(db_name)
+  config.master.authenticate(username, password)
+
   config.persist_in_safe_mode = false  
 end
 
