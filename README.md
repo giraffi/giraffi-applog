@@ -24,37 +24,37 @@ Setup and start server:
 
 Send logs to the server:
 
-   curl -v -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"applog":{"message":"logging message","time":1317623935,"type":"app","level":"debug"}}' http://localhost:3000/applogs.json
+     curl -v -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"applog":{"message":"logging message","time":1317623935,"type":"app","level":"debug"}}' http://localhost:3000/applogs.json
 
 Retrieve logs from the server:
 
-   curl -i -X GET 'message=logging&level=debug' http://localhost:3000/applogs.json
+     curl -i -X GET 'message=logging&level=debug' http://localhost:3000/applogs.json
 
 Getting started with Heroku and mongoHQ:
 
 Create your domain and repository on Heroku 
 
-   cd giraffi-applog/
-   heroku create
-   Created http://meetings-are-toxic-77.heroku.com/ | git@heroku.com:meetings-are-toxic-77.git      
+     cd giraffi-applog/
+     heroku create
+     Created http://meetings-are-toxic-77.heroku.com/ | git@heroku.com:meetings-are-toxic-77.git      
 
 Configure "server.rb" for connectiong to your database running on MongoHQ
 
-   Mongoid.configure do |config|
-     ## Please change params below according to your environment.
-     #  mongoHQ
+     Mongoid.configure do |config|
+       ## Please change params below according to your environment.
+       #  mongoHQ
 
-     host = 'staff.mongohq.com'    
-     port = 10099
-     db_name  = 'hq_database'
-     username = 'hq_username'
-     password = 'hq_password'
+       host = 'staff.mongohq.com'    
+       port = 10099
+       db_name  = 'hq_database'
+       username = 'hq_username'
+       password = 'hq_password'
 
-     config.master = Mongo::Connection.new(host, port).db(db_name)
-     config.master.authenticate(username, password)
+       config.master = Mongo::Connection.new(host, port).db(db_name)
+       config.master.authenticate(username, password)
 
-     config.persist_in_safe_mode = false  
-   end
+       config.persist_in_safe_mode = false  
+     end
 
 
 Author
