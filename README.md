@@ -38,7 +38,7 @@ First create your domain and repository on Heroku,
      heroku create
      Created http://meetings-are-toxic-77.heroku.com/ | git@heroku.com:meetings-are-toxic-77.git      
 
-And configure "server.rb" for connectiong to your database running on MongoHQ.
+And configure "server.rb" for connecting to your database running on MongoHQ.
 
      Mongoid.configure do |config|
        ## Please change params below according to your environment.
