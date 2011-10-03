@@ -1,4 +1,5 @@
 .bundle
+.watchr
 db/*.sqlite3
 log/*.log
 tmp/

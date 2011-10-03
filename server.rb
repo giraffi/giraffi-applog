@@ -7,22 +7,11 @@ require 'fiber'
 
 Mongoid.configure do |config|
   ## Please change params below according to your environment.
+  host = 'localhost'    
+  port = 27017
+  db_name = 'giraffi_applog_development'
 
-  ## localhost
-  #host = 'localhost'    
-  #port = 27017
-  #db_name = 'giraffi_applog_development'
-
-  ## mongoHQ
-  host = 'staff.mongohq.com'    
-  port = 10090
-  db_name   = 'azukiarai01'
-  username  = 'azukiarai'
-  password  = 'password'
-  
   config.master = Mongo::Connection.new(host, port).db(db_name)
-  config.master.authenticate(username, password)
-
   config.persist_in_safe_mode = false  
 end
 
@@ -83,11 +72,11 @@ class Server < Sinatra::Base
     end
     
     if message && level
-      applog = Applog.all(conditions: {message: /"#{message}"/, level: level}, sort:[["$natural", -1]], limit: limit.to_i)
+      applog = Applog.all(conditions:{message: /"#{message}"/, level: level}, sort:[["$natural", -1]], limit: limit.to_i)
     elsif message
-      applog = Applog.all(conditions: {message: /"#{message}"/}, sort: [["$natural", -1]], limit: limit.to_i)
+      applog = Applog.all(conditions:{message: /"#{message}"/}, sort: [["$natural", -1]], limit: limit.to_i)
     elsif level
-      applog = Applog.all(conditions: {level: level}, sort: [["$natural", -1]], limit: limit.to_i)
+      applog = Applog.all(conditions:{level: level}, sort: [["$natural", -1]], limit: limit.to_i)
     else
       applog = Applog.all(sort: [["$natural", -1]], limit: limit.to_i)
     end
