@@ -1,7 +1,7 @@
 giraffi-applog
 ============
 
-A server implementation that collects and aggregates logs generated
+A tiny server implementation that collects and aggregates logs generated
 by your application. 
 
 Requirements
@@ -42,7 +42,7 @@ And configure "server.rb" for connecting to your database running on MongoHQ.
 
      Mongoid.configure do |config|
        ## Please change params below according to your environment.
-       #  mongoHQ
+       ## The Settings below is for MongoHQ
 
        host = 'staff.mongohq.com'    
        port = 10099
