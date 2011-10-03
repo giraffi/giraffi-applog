@@ -20,7 +20,7 @@ __Setup and start server:__
      cd giraffi-applog/
      gem install bundler
      bundle install --path vendor/bundle
-     mongod --dbpath /tmp/your-dbpath
+     mongod --nojournal --dbpath ~/mongodb-xxx-xxx_xx-2.0.0/your-dbpath
      bundle exec rackup -s thin -p 3000 config.ru
 
 __Send logs to the server:__
