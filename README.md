@@ -16,10 +16,11 @@ Usage
 
 __Setup and start server:__
 
-     git clone git@git1.xenzai.com:mxenzai/giraffi-applog.git giraffi-applog 
+     git clone git@git1.xenzai.com:mxenzai/giraffi-applog.git giraffi-applog
      cd giraffi-applog/
      gem install bundler
      bundle install --path vendor/bundle
+     mongod --dbpath /tmp/your-dbpath
      bundle exec rackup -s thin -p 3000 config.ru
 
 __Send logs to the server:__
@@ -32,11 +33,11 @@ __Retrieve logs from the server:__
 
 __Getting started with Heroku and mongoHQ:__
 
-First create your domain and repository on Heroku,  
+First, create your domain and repository on Heroku.
 
      cd giraffi-applog/
      heroku create
-     Created http://meetings-are-toxic-77.heroku.com/ | git@heroku.com:meetings-are-toxic-77.git      
+     Created http://meetings-are-toxic-77.heroku.com/ | git@heroku.com:meetings-are-toxic-77.git
 
 And configure "server.rb" for connecting to your database running on MongoHQ.
 
