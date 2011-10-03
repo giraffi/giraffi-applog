@@ -43,7 +43,7 @@ And configure "server.rb" for connecting to your database running on MongoHQ.
 
      Mongoid.configure do |config|
        ## Please change params below according to your environment.
-       ## The Settings below is for MongoHQ
+       ## The settings below is for MongoHQ
 
        host = 'staff.mongohq.com'    
        port = 10099
