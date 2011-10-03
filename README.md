@@ -16,7 +16,7 @@ Usage
 
 __Setup and start server:__
 
-     git clone git@git1.xenzai.com:mxenzai/giraffi-applog.git giraffi-applog
+     git clone git://github.com/giraffi/giraffi-applog.git giraffi-applog
      cd giraffi-applog/
      gem install bundler
      bundle install --path vendor/bundle
