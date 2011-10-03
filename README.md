@@ -14,7 +14,7 @@ Requirements
 Usage
 ---------------
 
-Setup and start server:
+__Setup and start server:__
 
      git clone git@git1.xenzai.com:mxenzai/giraffi-applog.git giraffi-applog 
      cd giraffi-applog/
@@ -22,7 +22,7 @@ Setup and start server:
      bundle install --path vendor/bundle
      bundle exec rackup -s thin -p 3000 config.ru
 
-Send logs to the server:
+__Send logs to the server:__
 
      curl -v -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"applog":{"message":"logging message","time":1317623935,"type":"app","level":"debug"}}' http://localhost:3000/applogs.json
 
@@ -30,15 +30,15 @@ Retrieve logs from the server:
 
      curl -i -X GET 'message=logging&level=debug' http://localhost:3000/applogs.json
 
-Getting started with Heroku and mongoHQ:
+__Getting started with Heroku and mongoHQ:__
 
-Create your domain and repository on Heroku 
+First create your domain and repository on Heroku,  
 
      cd giraffi-applog/
      heroku create
      Created http://meetings-are-toxic-77.heroku.com/ | git@heroku.com:meetings-are-toxic-77.git      
 
-Configure "server.rb" for connectiong to your database running on MongoHQ
+And configure "server.rb" for connectiong to your database running on MongoHQ.
 
      Mongoid.configure do |config|
        ## Please change params below according to your environment.
@@ -58,5 +58,5 @@ Configure "server.rb" for connectiong to your database running on MongoHQ
 
 
 Author
-=======
+---------------
 azukiwasher, [Github](https://github.com/azukiwasher)
