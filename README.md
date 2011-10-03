@@ -1,26 +1,26 @@
 giraffi-applog
----------------
+============
 
 A server implementation that collects and aggregates logs generated
 by your application. 
 
 Requirements
-============
+---------------
 
 * Ruby 1.9.1 or higher
 * MongoDB 1.9.x or higher
 * EventMachine based async web server (e.g. thin)
 
 Usage
-=======
+---------------
 
 Setup and start server:
 
-   git clone git@git1.xenzai.com:mxenzai/giraffi-applog.git giraffi-applog 
-   cd giraffi-applog/
-   gem install bundler
-   bundle install --path vendor/bundle
-   bundle exec rackup -s thin -p 3000 config.ru
+     git clone git@git1.xenzai.com:mxenzai/giraffi-applog.git giraffi-applog 
+     cd giraffi-applog/
+     gem install bundler
+     bundle install --path vendor/bundle
+     bundle exec rackup -s thin -p 3000 config.ru
 
 Send logs to the server:
 
