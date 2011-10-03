@@ -7,20 +7,20 @@ require 'fiber'
 
 Mongoid.configure do |config|
   ## Please change params below according to your environment.
-  host = 'localhost'    
+  host = 'localhost'
   port = 27017
   db_name = 'giraffi_applog_development'
 
   config.master = Mongo::Connection.new(host, port).db(db_name)
-  config.persist_in_safe_mode = false  
+  config.persist_in_safe_mode = false
 end
 
 class Applog
   include Mongoid::Document
   field :time, :type => Integer
-  field :message 
-  field :type 
-  field :level 
+  field :message
+  field :type
+  field :level
 
   validates_presence_of :time, :message, :type, :level
   validates_numericality_of :time
@@ -32,7 +32,7 @@ class Server < Sinatra::Base
     put *a, &b
     post *a, &b
   end
- 
+
   helpers do
     def json_status(code, reason)
       status code
@@ -70,7 +70,7 @@ class Server < Sinatra::Base
       # Initialize with max limit: 100
       limit = 100
     end
-    
+
     if message && level
       applog = Applog.all(conditions:{message: /"#{message}"/, level: level}, sort:[["$natural", -1]], limit: limit.to_i)
     elsif message
@@ -81,17 +81,17 @@ class Server < Sinatra::Base
       applog = Applog.all(sort: [["$natural", -1]], limit: limit.to_i)
     end
 
-    if applog 
+    if applog
       applog.to_json
     else
       json_status 404, "Not found"
     end
   end
 
-  # Handling error, not_found, etc. 
+  # Handling error, not_found, etc.
   get '*' do
     status 404
-  end  
+  end
 
   put_or_post "*" do
     status 404
