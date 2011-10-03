@@ -2,7 +2,7 @@ require 'rake/testtask'
 
 desc "Start server"
 task :start do
-  system "bundle exec rackup -s thin -p 3000 server.rb"
+  system "bundle exec rackup -s thin -p 3000 config.ru"
 end
 
 desc "Run tests"
