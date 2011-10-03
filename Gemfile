@@ -13,8 +13,8 @@ gem 'rack-fiber_pool', :require => 'rack/fiber_pool'
 gem 'rack-cache'
 gem 'thin'
 
-#group :development, :test do
+group :development, :test do
   gem 'rspec', '~> 2.0'
   gem 'rack-test'
   gem 'watchr'
-#end
+end
