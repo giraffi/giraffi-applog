@@ -14,7 +14,7 @@ Requirements
 Usage
 ---------------
 
-__Setup and start server__ * `rake test` is optional 
+__Setup and start server__ (`rake test` is optional) 
 
      git clone git://github.com/giraffi/giraffi-applog.git giraffi-applog
      cd giraffi-applog/
