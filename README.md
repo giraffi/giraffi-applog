@@ -8,7 +8,7 @@ Requirements
 ---------------
 
 * Ruby 1.9.1 or higher
-* MongoDB 1.9.x or higher
+* MongoDB 1.8.x or higher
 * EventMachine based async web server (e.g. thin)
 
 Usage
