@@ -14,7 +14,7 @@ Requirements
 Usage
 ---------------
 
-__Setup and start server:__ *`rake test` is optional 
+__Setup and start server__ * `rake test` is optional 
 
      git clone git://github.com/giraffi/giraffi-applog.git giraffi-applog
      cd giraffi-applog/
@@ -24,15 +24,15 @@ __Setup and start server:__ *`rake test` is optional
      rake test      
      bundle exec rackup -s thin -p 3000 config.ru
 
-__Send logs to the server:__
+__Send logs to the server__
 
      curl -v -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"applog":{"message":"logging message","time":1317623935,"type":"app","level":"debug"}}' http://localhost:3000/applogs.json
 
-__Retrieve logs from the server:__
+__Retrieve logs from the server__
 
      curl -i -X GET 'message=logging&level=debug' http://localhost:3000/applogs.json
 
-__Getting started with Heroku and mongoHQ:__
+__Getting started with Heroku and MongoHQ__
 
 First, create your domain and repository on Heroku.
 
