@@ -14,13 +14,14 @@ Requirements
 Usage
 ---------------
 
-__Setup and start server:__
+__Setup and start server:__ *`rake test` is optional 
 
      git clone git://github.com/giraffi/giraffi-applog.git giraffi-applog
      cd giraffi-applog/
      gem install bundler
      bundle install --path vendor/bundle
      mongod --nojournal --dbpath ~/mongodb-xxx-xxx_xx-2.0.0/your-dbpath
+     rake test      
      bundle exec rackup -s thin -p 3000 config.ru
 
 __Send logs to the server:__
