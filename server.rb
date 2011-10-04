@@ -18,7 +18,7 @@ end
 class Applog
   include Mongoid::Document
   field :time, :type => Integer
-  field :message
+  field :message, :type => String
   field :type
   field :level
 
@@ -72,12 +72,16 @@ class Server < Sinatra::Base
     end
 
     if message && level
-      applog = Applog.all(conditions:{message: /"#{message}"/, level: level}, sort:[["$natural", -1]], limit: limit.to_i)
+      puts "1"
+      applog = Applog.all(conditions: {message: /#{message}/, level: level}, sort: [["$natural", -1]], limit: limit.to_i)
     elsif message
-      applog = Applog.all(conditions:{message: /"#{message}"/}, sort: [["$natural", -1]], limit: limit.to_i)
+      puts "2"
+      applog = Applog.all(conditions: {message: /#{message}/}, sort: [["$natural", -1]], limit: limit.to_i)
     elsif level
-      applog = Applog.all(conditions:{level: level}, sort: [["$natural", -1]], limit: limit.to_i)
+      puts "3"
+      applog = Applog.all(conditions: {level: level}, sort: [["$natural", -1]], limit: limit.to_i)
     else
+      puts "4"
       applog = Applog.all(sort: [["$natural", -1]], limit: limit.to_i)
     end
 

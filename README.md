@@ -26,11 +26,11 @@ __Setup and start server__ (`rake test` is optional)
 
 __Send logs to the server__
 
-     curl -v -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"applog":{"message":"logging message","time":1317623935,"type":"app","level":"debug"}}' http://localhost:3000/applogs.json
+     curl -v -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"applog":{"message":"foo bar hoge","time":1317623935,"type":"app","level":"debug"}}' http://localhost:3000/applogs.json
 
 __Retrieve logs from the server__
 
-     curl -i -X GET 'message=logging&level=debug' http://localhost:3000/applogs.json
+     curl -i -X GET -d 'message=bar&level=debug' http://localhost:3000/applogs.json
 
 __Getting started with Heroku and MongoHQ__
 
