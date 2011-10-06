@@ -23,7 +23,7 @@ __Setup and start server__ (`rake test` is optional)
      rake test      
      bundle exec rackup -s thin -p 3000 config.ru
 
-__Send logs to the server__
+__Post logs to the server__
 
      curl -v -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"applog":{"message":"foo bar hoge","time":1317623935,"type":"app","level":"debug"}}' http://localhost:3000/applogs.json
 
