@@ -31,7 +31,7 @@ __Retrieve logs from the server__
 
      curl -i -X GET -d 'message=bar&level=debug' http://localhost:3000/applogs.json
      
-It may be better to post and retrieve logs with [node-giraffi](https://github.com/giraffi/node-giraffi) if your app is running on Node.js.
+It may be better to post and retrieve logs with [node-giraffi](https://github.com/giraffi/node-giraffi) if your app is running on node.js.
 
 __Getting started with Heroku and MongoHQ__
 
