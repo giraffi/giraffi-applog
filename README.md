@@ -31,7 +31,7 @@ __Retrieve logs from the server__
 
      curl -i -X GET -d 'message=bar&level=debug' http://localhost:3000/applogs.json
      
-Maybe it would be better to post and get logs with [node-giraffi](https://github.com/giraffi/node-giraffi) if your app was running on Node.js.
+It may be better to post and retrieve logs with [node-giraffi](https://github.com/giraffi/node-giraffi) if your app is running on Node.js.
 
 __Getting started with Heroku and MongoHQ__
 
@@ -45,7 +45,7 @@ And configure `server.rb` for connecting to your database running on MongoHQ.
 
      Mongoid.configure do |config|
        ## Please change params below according to your environment.
-       ## The settings below is for MongoHQ
+       ## The settings below are for MongoHQ
 
        host = 'staff.mongohq.com'    
        port = 10099
